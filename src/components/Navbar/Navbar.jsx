@@ -4,16 +4,23 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Function to detect active section while scrolling
+  // Function to detect active section while scrolling and apply the zoom effect
   const handleScroll = () => {
     const sections = ["home", "about", "services", "contact"];
     sections.forEach((section) => {
       const sectionElement = document.getElementById(section);
       const rect = sectionElement.getBoundingClientRect();
 
-      // Check if section is in view
-      if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
-        setActiveSection(section);
+      // Check if the section is in view (middle of the viewport)
+      if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+        setActiveSection(section); // Set active section
+
+        // Apply zoom effect for the section in view
+        sectionElement.style.backgroundSize = "110%"; // Zoom in
+        sectionElement.style.transition = "background-size 0.5s ease-in-out"; // Smooth transition
+      } else {
+        // Reset the background size for sections not in view
+        sectionElement.style.backgroundSize = "100%"; // Zoom out
       }
     });
   };
@@ -59,63 +66,63 @@ const Navbar = () => {
         </nav>
       </section>
 
-      {/* Sections with Strong Shadows and White Space */}
+      {/* Main Content */}
       <section className="py-10">
         <div className="m-10">
           {/* Home Section */}
           <div
             id="home"
-            className="h-screen bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg" // Added shadow and rounded class
+            className="h-[700px] bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg"
             style={{
               backgroundImage: "url('/src/assets/1.jpg')",
-              backgroundSize: "90% 90%",
-              marginTop: "100px", // Ensure enough space for shadow on top
-              padding: "30px", // White space inside the section
+              backgroundSize: "cover",
+              marginTop: "50px",
+              padding: "30px",
             }}
           >
-            <h2 className="text-9xl text-white">Home Section</h2>
+            <h2 className="text-9xl text-white animate-rotateText">Home</h2>
           </div>
 
           {/* About Section */}
           <div
             id="about"
-            className="h-screen bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg" // Added shadow and rounded class
+            className="h-[700px] bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg"
             style={{
               backgroundImage: "url('/src/assets/2.jpg')",
-              backgroundSize: "90% 90%",
-              marginTop: "50px", // Add space between sections for shadow visibility
-              padding: "30px", // White space inside the section
+              backgroundSize: "cover",
+              marginTop: "50px",
+              padding: "30px",
             }}
           >
-            <h2 className="text-9xl text-white">About Section</h2>
+            <h2 className="text-9xl text-white animate-rotateText">About</h2>
           </div>
 
           {/* Services Section */}
           <div
             id="services"
-            className="h-screen bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg" // Added shadow and rounded class
+            className="h-[700px] bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg"
             style={{
               backgroundImage: "url('/src/assets/3.jpg')",
-              backgroundSize: "90% 90%",
-              marginTop: "50px", // Add space between sections for shadow visibility
-              padding: "30px", // White space inside the section
+              backgroundSize: "cover",
+              marginTop: "50px",
+              padding: "30px",
             }}
           >
-            <h2 className="text-9xl text-white">Services Section</h2>
+            <h2 className="text-9xl text-white animate-rotateText">Services</h2>
           </div>
 
           {/* Contact Section */}
           <div
             id="contact"
-            className="h-screen bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg" // Added shadow and rounded class
+            className="h-[700px] bg-no-repeat bg-center flex justify-center items-center shadow-gray-600 shadow-2xl rounded-lg"
             style={{
               backgroundImage: "url('/src/assets/4.jpg')",
-              backgroundSize: "90% 90%",
-              marginTop: "50px", // Add space between sections for shadow visibility
-              padding: "30px", // White space inside the section
+              backgroundSize: "cover",
+              marginTop: "50px",
+              padding: "30px",
             }}
           >
-            <h2 className="text-9xl text-white">Contact Section</h2>
+            <h2 className="text-9xl text-white animate-rotateText">Contact</h2>
           </div>
         </div>
       </section>
